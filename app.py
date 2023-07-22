@@ -83,13 +83,13 @@ def add_property():
 
 @app.route('/getProperty', methods=['GET'])
 def get_properties():
-    token = request.headers.get('Authorization')
+    # token = request.headers.get('Authorization')
 
-    if not token:
-        return jsonify({'message': 'Authorization token is missing'}), 401
+    # if not token:
+    #     return jsonify({'message': 'Authorization token is missing'}), 401
 
     try:
-        decoded_token = decode(token, 'hrsht', algorithms=['HS256'])
+        # decoded_token = decode(token, 'hrsht', algorithms=['HS256'])
 
         # Retrieve all available properties
         properties_collection = get_properties_collection()
