@@ -240,11 +240,45 @@ def book_property(property_id):
         }
         booking_id = bookings_collection.insert_one(booking_data).inserted_id
 
-        return jsonify({'message': 'Property booked successfully', 'booking_id': str(booking_id)}), 200
+        # Fetch the booked property details
+        booked_property = properties_collection.find_one({'_id': ObjectId(property_id)})
+
+        return jsonify({'message': 'Property booked successfully', 'booking_id': str(booking_id), 'booked_property': booked_property}), 200
 
     except InvalidTokenError:
         return jsonify({'message': 'Invalid authorization token'}), 401
 
+
+@app.route('/getbooking', methods=['GET'])
+def get_bookings_and_properties():
+    token = request.headers.get('Authorization')
+
+    if not token:
+        return jsonify({'message': 'Authorization token is missing'}), 401
+
+    try:
+        decoded_token = decode(token, 'hrsht', algorithms=['HS256'])
+        user_id = decoded_token['user_id']
+
+        # Retrieve bookings with matching guest_id
+        bookings_collection = get_bookings_collection()
+        bookings = list(bookings_collection.find({'guest_id': user_id}))
+
+        # Extract property IDs from bookings
+        property_ids = [booking['property_id'] for booking in bookings]
+
+        # Fetch properties with matching IDs
+        properties_collection = get_properties_collection()
+        properties = list(properties_collection.find({'_id': {'$in': [ObjectId(id) for id in property_ids]}}))
+
+        # Remove the _id field from each property (optional)
+        for property in properties:
+            property.pop('_id', None)
+
+        return jsonify({'properties': properties}), 200
+
+    except InvalidTokenError:
+        return jsonify({'message': 'Invalid authorization token'}), 401
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/navbar.css';
+import logo from '../HOTEL HUNT.png'; // Import the logo image
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,7 +23,10 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="logo">Your Logo</div>
+      <div className="logo">
+        {/* Use the imported logo image */}
+        <img src={logo} alt="Hotel Hunt Logo" />
+      </div>
       <div className="links">
         {isLoggedIn && ( // Show the "Add Property" button only for logged-in users
           <button onClick={handleAddProperty}>Add Property</button>

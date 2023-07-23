@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/signupPage.css'
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h1>Signup</h1>
       <div>
         <label htmlFor="name">Name:</label>

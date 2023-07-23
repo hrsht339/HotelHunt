@@ -1,0 +1,48 @@
+/* styles/navbar.css */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9; /* Light gray background color */
+    color: #333; /* Dark gray text color */
+    padding: 10px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0078d4; /* Light blue logo color */
+  }
+  
+  .links {
+    display: flex;
+    align-items: center;
+  }
+  
+  button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0078d4; /* Light blue button background color */
+    color: #fff; /* White button text color */
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  button:last-child {
+    margin-right: 0;
+  }
+  
+  span {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .logo>img{
+    width: 200px;
+    height: 70px;
+  }
+  

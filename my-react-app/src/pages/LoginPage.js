@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/loginPage.css'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Login</h1>
       <div>
         <label htmlFor="email">Email:</label>
